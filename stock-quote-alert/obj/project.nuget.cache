@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "YA3UzQvy6qi+MfTqHCBu3SanTxwJ83Q5yJlfYApjopFJ1j6NEsdqkydlhSGK4QGfG5GV5bUptquVPaJgo21E7A==",
+  "dgSpecHash": "cRqbNVMruW2Z+pf66frh3wc6fxQZo5VR5AuYure4XBRPXfmApo/p1x6rh7bLqs7GU/q3y7oTj69m2MyTkNI4Vw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\david.bertrand.iway\\Source\\Repos\\stock-quote-alert\\stock-quote-alert\\stock-quote-alert.csproj",
+  "projectFilePath": "C:\\Users\\david.bertrand.iway\\RiderProjects\\stock-quote-alert\\stock-quote-alert\\stock-quote-alert.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }
