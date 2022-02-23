@@ -1,21 +1,29 @@
-﻿using System;
-using stock_quote_alert;
+﻿using Microsoft.Extensions.Configuration;
+
+namespace stock_quote_alert; 
 
 public class Alerter {
 
     public static async Task<int> Main(string[] args) {
-        if (verifyArgs(args.Length) < 1) {
-            return -args.Length;
+        if (!ArgsAreInOrder(args.Length)) {
+            return -1; // there are missing arguments 
         }
-        Consultant consultant = new Consultant(args[0], Convert.ToDouble(args[1]), Convert.ToDouble(args[2]));
-        AssetOperation operation = await consultant.Consult();
-        guideTrader(operation);
-        return 1;
+        if (!LimitsAreDoubles(args[1], args[2])) {
+            return -2; // the limits are not in proper double format or an overflow error occurred
+        }
+        AppConfig configs = new AppConfig();
+        Consultant consultant = new Consultant(args[0], args[1], args[2], configs.ApiKey);
+        AssetOperation operation = await consultant.Consult(configs.TimeSpan);
+        return GuideTrader(
+            operation, 
+            args[0], 
+            operation == AssetOperation.Buy ? args[2] : args[1]
+        );
     }
 
-    private static int verifyArgs(int size){
+    private static bool ArgsAreInOrder(int size){
         if (size > 2) {
-            return size;
+            return true;
         } 
         if (size < 2) {
             Console.Error.WriteLine("Parâmetro obrigatório faltando: limite inferior de preço");
@@ -26,23 +34,40 @@ public class Alerter {
         if (size == 0) {
             Console.Error.WriteLine("Parâmetro obrigatório faltando: símbolo do ativo");
         }
-        return -size;
+        return false;
     }
 
-    private static void guideTrader(AssetOperation operation) {
-        switch (operation) {
+    private static bool LimitsAreDoubles(string ceil, string floor) {
+        try {
+            Convert.ToDouble(ceil.Replace('.', ','));
+            Convert.ToDouble(floor.Replace('.', ','));
+            return true;
+        }
+        catch (FormatException exception) {
+            return false;
+        }
+        catch (OverflowException exception) {
+            return false;
+        }
+    }
+
+    private static int GuideTrader(AssetOperation operation, string asset, string price) {
+        IConfigurationBuilder builder = new ConfigurationBuilder().AddJsonFile("appsettings.json", false, true);
+         switch (operation) {
             case AssetOperation.Buy:
-                Console.Out.WriteLine("COMPRA COMPRA COMPRA");
-                break;
+                new EmailNotificator().SendBuyOrder(asset, price);
+                return 1;
             case AssetOperation.Sell:
-                Console.Out.WriteLine("VENDE VENDE VENDE");
-                break;
+                new EmailNotificator().SendSellOrder(asset, price);
+                return 1;
             case AssetOperation.InvalidAsset:
                 Console.Error.WriteLine("Ativo inválido");
-                break;
+                return -3;
             case AssetOperation.Error:
                 Console.Error.WriteLine("Erro");
-                break;
-        }
+                return -4;
+            default:
+                return -4;
+         }
     }
 }
