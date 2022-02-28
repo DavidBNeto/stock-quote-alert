@@ -7,6 +7,8 @@ public class Consultant {
     
     private readonly string key; //"F0c7R4uKDqHXotBMzHlNZnAuS";
 
+    private readonly AppConfig config;
+
     private readonly HttpClient client = new HttpClient();
 
     private readonly string url;
@@ -17,17 +19,21 @@ public class Consultant {
 
     private readonly double ceil;
 
-    public Consultant(string asset, string ceil, string floor, string key) {
-        this.key = key;
+    private int currDay;
+
+    public Consultant(string asset, string ceil, string floor) {
         this.asset = asset.ToUpper();
         this.ceil = Convert.ToDouble(ceil.Replace('.',','));
         this.floor = Convert.ToDouble(floor.Replace('.',','));
+        currDay = DateTime.Now.Day;
+        config = new AppConfig();
+        key = config.ApiKey;
         url = FormatUrlString();
     }
 
-    public async Task<AssetOperation> Consult(TimeSpanBetweenRequests timeSpan) {
+    public async Task<AssetOperation> Consult() {
         try {
-            while (isBusinessHours()) {
+            while (IsBusinessTime()) {
                 HttpResponseMessage responseMessage = await client.GetAsync(url);
                 ResponseEntity? response = responseMessage.Content.ReadFromJsonAsync<ResponseEntity>().Result;
                 if (response is not null && response.Code == 200) {
@@ -53,7 +59,7 @@ public class Consultant {
                     return AssetOperation.InvalidAsset;
                 }
                 Console.Write("Esperando atualização do valor do ativo...\n");
-                Thread.Sleep((int)timeSpan * 60 * 1000);
+                Thread.Sleep((int)config.TimeSpan * 60 * 1000);
             }
         } catch (Exception e) {
             Console.WriteLine(e); 
@@ -85,15 +91,31 @@ public class Consultant {
             .ToString();
     }
 
-    private bool isBusinessHours() {
+    private bool IsBusinessTime() {
+        ConfirmIsNotAHoliday();
         int currHour = DateTime.Now.Hour;
         int currMinutes = DateTime.Now.Minute;
         if ((currHour == 9 && currMinutes > 29) ||
             (currHour > 9 && currHour < 18)) {
             return true;
-        } else {
-            Thread.Sleep(((24 - currHour) + 9) * 60 * 60 * 1000);
-            return true;
+        }
+        Thread.Sleep(((24 - currHour) + 9) * 60 * 60 * 1000);
+        return true;
+    }
+
+    private void ConfirmIsNotAHoliday() {
+        if (DateTime.Now.Day != currDay) {
+            currDay = DateTime.Now.Day;
+            int currYear = DateTime.Now.Year;
+            int currMonth = DateTime.Now.Month;
+            foreach (string holiday in config.Holidays) {
+                string[] holidayInfo = holiday.Split("-");
+                if (currDay == Convert.ToInt32(holidayInfo[2]) &&
+                    currYear == Convert.ToInt32(holidayInfo[0]) &&
+                    currMonth == Convert.ToInt32(holidayInfo[1])) {
+                    Thread.Sleep(((24 - DateTime.Now.Hour) + 9) * 60 * 60 * 1000);
+                }
+            }
         }
     }
 }

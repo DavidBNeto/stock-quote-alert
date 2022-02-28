@@ -6,8 +6,8 @@ namespace stock_quote_alert;
 
 public class EmailNotificator {
 
-    private EmailConfig emailConfig;
-    private SmtpClient client;
+    private readonly EmailConfig emailConfig;
+    private readonly SmtpClient client;
 
     public EmailNotificator() {
         emailConfig = new EmailConfig();
