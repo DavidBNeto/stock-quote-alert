@@ -3,13 +3,10 @@
   &lt;Assembly Path="C:\Users\david.bertrand.iway\.nuget\packages\microsoft.extensions.configuration\7.0.0-preview.1.22076.8\lib\net6.0\Microsoft.Extensions.Configuration.dll" /&gt;&#xD;
   &lt;Assembly Path="C:\Users\david.bertrand.iway\.nuget\packages\nunit\3.13.2\lib\netstandard2.0\nunit.framework.dll" /&gt;&#xD;
 &lt;/AssemblyExplorer&gt;</s:String>
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=1aeaffc5_002D3d81_002D490f_002D8e0b_002Da3c3fffc2d16/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="Test1 #2" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=f08273f7_002D098c_002D4d07_002D9986_002Dda374d043a64/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="TestConsultant" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
   &lt;TestAncestor&gt;&#xD;
-    &lt;TestId&gt;NUnit3x::A8C17048-D830-4607-8733-CA2B83E34C97::net6.0::stock_quote_alert_test.Tests.Test1&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;NUnit3x::A8C17048-D830-4607-8733-CA2B83E34C97::net6.0::stock_quote_alert_test.UnitTests.TestConsultant&lt;/TestId&gt;&#xD;
   &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String>
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=f72f5646_002D4c56_002D40ad_002D8000_002D8b0799afc3e3/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="Test1" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
-  &lt;TestAncestor&gt;&#xD;
-    &lt;TestId&gt;NUnit3x::A8C17048-D830-4607-8733-CA2B83E34C97::net6.0::stock_quote_alert_test.Tests&lt;/TestId&gt;&#xD;
-  &lt;/TestAncestor&gt;&#xD;
-&lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>
+	
+	</wpf:ResourceDictionary>

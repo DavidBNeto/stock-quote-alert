@@ -1,14 +1,9 @@
-using System;
 using NUnit.Framework;
 using stock_quote_alert;
 
 namespace stock_quote_alert_test;
 
-public class Tests
-{
-    /*[SetUp]
-    public void Setup() {
-    }*/
+public class IntegrationTests {
 
     [Test]
     public void InvalidAsset() {
@@ -43,22 +38,6 @@ public class Tests
             args
         ).Result;
         Assert.AreEqual(-1,result);
-    }
-
-    [Test]
-    public void AlertIsWorkingProperlyMaxLimit() {
-        int result = Program.Main(
-            new string[3]{"PETR4","30.21",Double.MaxValue.ToString()}
-        ).Result;
-        Assert.AreEqual(1,result);
-    }
-
-    [Test]
-    public void AlertIsWorkingProperlyMinLimit() {
-        int result = Program.Main(
-            new string[3]{"PETR4", Double.MinValue.ToString(),"30.21"}
-        ).Result;
-        Assert.AreEqual(1,result);
     }
 
     [Test]

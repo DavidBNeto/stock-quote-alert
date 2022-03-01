@@ -19,13 +19,16 @@ public class Consultant {
 
     private readonly double ceil;
 
+    private readonly IClock clock;
+
     private int currDay;
 
-    public Consultant(string asset, string ceil, string floor) {
+    public Consultant(string asset, string ceil, string floor, IClock clock) {
         this.asset = asset.ToUpper();
         this.ceil = Convert.ToDouble(ceil.Replace('.',','));
         this.floor = Convert.ToDouble(floor.Replace('.',','));
-        currDay = DateTime.Now.Day;
+        this.clock = clock;
+        currDay = clock.Now.Day;
         config = new AppConfig();
         key = config.ApiKey;
         url = FormatUrlString();
@@ -93,8 +96,8 @@ public class Consultant {
 
     private bool IsBusinessTime() {
         ConfirmIsNotAHoliday();
-        int currHour = DateTime.Now.Hour;
-        int currMinutes = DateTime.Now.Minute;
+        int currHour = clock.Now.Hour;
+        int currMinutes = clock.Now.Minute;
         if ((currHour == 9 && currMinutes > 29) ||
             (currHour > 9 && currHour < 18)) {
             return true;
@@ -104,16 +107,16 @@ public class Consultant {
     }
 
     private void ConfirmIsNotAHoliday() {
-        if (DateTime.Now.Day != currDay) {
-            currDay = DateTime.Now.Day;
-            int currYear = DateTime.Now.Year;
-            int currMonth = DateTime.Now.Month;
+        if (clock.Now.Day != currDay) {
+            currDay = clock.Now.Day;
+            int currYear = clock.Now.Year;
+            int currMonth = clock.Now.Month;
             foreach (string holiday in config.Holidays) {
                 string[] holidayInfo = holiday.Split("-");
                 if (currDay == Convert.ToInt32(holidayInfo[2]) &&
                     currYear == Convert.ToInt32(holidayInfo[0]) &&
                     currMonth == Convert.ToInt32(holidayInfo[1])) {
-                    Thread.Sleep(((24 - DateTime.Now.Hour) + 9) * 60 * 60 * 1000);
+                    Thread.Sleep(((24 - clock.Now.Hour) + 9) * 60 * 60 * 1000);
                 }
             }
         }

@@ -11,7 +11,7 @@ public static class Program {
         if (!LimitsAreDoubles(args[1], args[2])) {
             return -2; // the limits are not in proper double format or an overflow error occurred
         }
-        Consultant consultant = new Consultant(args[0], args[1], args[2]);
+        Consultant consultant = new Consultant(args[0], args[1], args[2], new SystemClock());
         AssetOperation operation = await consultant.Consult();
         return GuideTrader(
             operation, 

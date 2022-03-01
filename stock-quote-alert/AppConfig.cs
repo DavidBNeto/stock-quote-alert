@@ -12,9 +12,9 @@ public class AppConfig {
             .GetSection("App");
         ApiKey = configuration["ApiKey"]!;
         TimeSpan = (TimeSpanBetweenRequests)Convert.ToInt32(configuration["Timespan"]);
-        Holidays = new string[12] {
+        Holidays = new string[13] {
             "2022-01-01",
-            //"2022-02-28",
+            "2022-02-28",
             "2022-03-01",
             "2022-03-02",
             "2022-03-03",

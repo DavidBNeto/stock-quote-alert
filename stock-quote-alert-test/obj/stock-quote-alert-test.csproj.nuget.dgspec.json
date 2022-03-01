@@ -48,6 +48,10 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "AE.Net.Mail": {
+              "target": "Package",
+              "version": "[1.7.10, )"
+            },
             "Microsoft.NET.Test.Sdk": {
               "target": "Package",
               "version": "[16.11.0, )"
@@ -59,6 +63,10 @@
             "NUnit3TestAdapter": {
               "target": "Package",
               "version": "[4.0.0, )"
+            },
+            "Pose": {
+              "target": "Package",
+              "version": "[1.2.1, )"
             },
             "coverlet.collector": {
               "target": "Package",

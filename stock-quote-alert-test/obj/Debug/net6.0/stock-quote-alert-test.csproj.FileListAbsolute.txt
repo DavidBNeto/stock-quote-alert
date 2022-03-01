@@ -134,3 +134,6 @@ C:\Users\david.bertrand.iway\RiderProjects\stock-quote-alert\stock-quote-alert-t
 C:\Users\david.bertrand.iway\RiderProjects\stock-quote-alert\stock-quote-alert-test\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
 C:\Users\david.bertrand.iway\RiderProjects\stock-quote-alert\stock-quote-alert-test\bin\Debug\net6.0\stock-quote-alert.dll
 C:\Users\david.bertrand.iway\RiderProjects\stock-quote-alert\stock-quote-alert-test\bin\Debug\net6.0\stock-quote-alert.pdb
+C:\Users\david.bertrand.iway\RiderProjects\stock-quote-alert\stock-quote-alert-test\bin\Debug\net6.0\AE.Net.Mail.dll
+C:\Users\david.bertrand.iway\RiderProjects\stock-quote-alert\stock-quote-alert-test\bin\Debug\net6.0\Mono.Reflection.dll
+C:\Users\david.bertrand.iway\RiderProjects\stock-quote-alert\stock-quote-alert-test\bin\Debug\net6.0\Pose.dll
