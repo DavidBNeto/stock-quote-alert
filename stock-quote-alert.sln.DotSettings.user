@@ -4,9 +4,7 @@
   &lt;Assembly Path="C:\Users\david.bertrand.iway\.nuget\packages\nunit\3.13.2\lib\netstandard2.0\nunit.framework.dll" /&gt;&#xD;
 &lt;/AssemblyExplorer&gt;</s:String>
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=f08273f7_002D098c_002D4d07_002D9986_002Dda374d043a64/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="TestConsultant" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
-  &lt;TestAncestor&gt;&#xD;
-    &lt;TestId&gt;NUnit3x::A8C17048-D830-4607-8733-CA2B83E34C97::net6.0::stock_quote_alert_test.UnitTests.TestConsultant&lt;/TestId&gt;&#xD;
-  &lt;/TestAncestor&gt;&#xD;
+  &lt;Project Location="C:\Users\david.bertrand.iway\RiderProjects\stock-quote-alert\stock-quote-alert-test" Presentation="&amp;lt;stock-quote-alert-test&amp;gt;" /&gt;&#xD;
 &lt;/SessionState&gt;</s:String>
 	
 	</wpf:ResourceDictionary>
